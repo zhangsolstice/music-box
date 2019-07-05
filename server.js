@@ -1,10 +1,10 @@
 const fs = require('fs')
 const path = require('path')
-const LRU = require('lru-cache')
-const chalk = require('chalk')
+const LRU = require('lru-cache') //  不缓存最近最少使用的项目
+const chalk = require('chalk') //  terminal着色器
 const Koa = require('koa')
-const Router = require('koa-router')
-const send = require('koa-send')
+const Router = require('koa-router') //  koa路由器中间件
+const send = require('koa-send') //  静态文件服务中间件
 const favicon = require('koa-favicon')
 const setupDevServer = require('./build/setup-dev-server')
 const { createBundleRenderer } = require('vue-server-renderer')
@@ -24,7 +24,7 @@ if (isProd) {
   const serverBundle = require('./dist/vue-ssr-server-bundle.json')
   const clientManifest = require('./dist/vue-ssr-client-manifest.json')
   renderer = createBundleRenderer(serverBundle, {
-    runInNewContext: false,
+    runInNewContext: false, //  关闭以提升性能
     template: fs.readFileSync(templatePath, 'utf-8'),
     clientManifest
   })

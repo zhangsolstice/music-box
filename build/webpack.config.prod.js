@@ -21,8 +21,8 @@ module.exports = webpackMerge(webpackConfigBase, {
     }),
     new MiniCssExtractPlugin({
       filename: utils.assetsPath('css/[name].[contenthash].css'),
-      chunkFilename: utils.assetsPath('css/[name].[contenthash].css')
+      chunkFilename: utils.assetsPath('css/[id].[contenthash].css')
     }),
-    new webpack.HashedModuleIdsPlugin()
+    new webpack.HashedModuleIdsPlugin() //  根据模块的相对路径生成一个四位数的hash作为模块的id
   ]
 })

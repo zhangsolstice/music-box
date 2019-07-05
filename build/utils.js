@@ -1,19 +1,19 @@
 
 const path = require('path')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin') //  生产环境下抽出css单独生成css文件
 const config = require('../config/config')
 const packageConfig = require('../package.json')
 const isDev = process.env.NODE_ENV === 'development'
 exports.resolveBasePath = _path => {
-  return path.join(__dirname, '..', _path)
+  return path.join(__dirname, '..', _path) //  常用路径变为绝对路径
 }
 exports.assetsPath = _path => {
   const assetsSubDir = process.env.NODE_ENV === 'development'
     ? config.dev.assetsSubDir
     : config.prod.assetsSubDir
-  return path.posix.join(assetsSubDir, _path)
+  return path.posix.join(assetsSubDir, _path) //  打包后的文件存放路径
 }
-exports.styleLoader = () => {
+exports.styleLoader = () => { //  css样式处理
   const rules = []
   const rule = {
     test: /\.styl(us)?$/,
@@ -59,8 +59,8 @@ exports.styleLoader = () => {
     return rules
   }
 }
-exports.createNotifierCallback = () => {
-  const notifier = require('node-notifier')
+exports.createNotifierCallback = () => { //  开发环境下提示错误或警告
+  const notifier = require('node-notifier') //  node-notifier: 发送跨平台本机通知
   return (severity, errors) => {
     if (severity !== 'error') return
     const error = errors[0]
